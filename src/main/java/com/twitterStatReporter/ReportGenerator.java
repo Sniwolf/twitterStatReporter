@@ -139,17 +139,6 @@ public class ReportGenerator implements Runnable{
         }
     }
 
-//    private void timezoneGrabber(JSONObject jsonTweet) {
-//
-//        //JSONObject place = (JSONObject) jsonTweet.get("place");
-//
-//        if(!jsonTweet.isNull("place")){
-//            JSONObject place = (JSONObject) jsonTweet.get("place");
-//            System.out.println(place);
-//        }
-//
-//    }
-
     private void entitiesGrabber(JSONObject jsonTweet) throws URISyntaxException {
 
         // Grab the entities object.

@@ -4,9 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * ConfigurationFileReader is used to read the twitter.config file to gather the users set configuration information.
+ * loadConfig will attempt to gather the information from the config file so long as the fields are not null.
+ */
 public class ConfigFileReader {
 
+    // Properties object to get the configuration files properties.
     Properties configProp;
+
+    //Input stream to the data from the configuration file.
     FileInputStream configStream;
 
     // Total run time of the program from the config file.
@@ -30,9 +37,14 @@ public class ConfigFileReader {
     // Consumer Secret token string.
     String consumerSecret;
 
+    /**
+     * ConfigurationFileReader constructor, used to create and gather the configuration information in the twitter
+     * config file.
+     * @throws IOException
+     */
     public ConfigFileReader() throws IOException {
 
-        // Todo: Probably better to accept a file path for a config file then default if needed.
+        // The config file's set name.
         String fileName = "twitter.config";
 
         // Create a properties object to get the config settings from.

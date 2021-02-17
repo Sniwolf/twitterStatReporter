@@ -2,8 +2,25 @@ package com.twitterStatReporter;
 
 import java.io.IOException;
 
+/**
+ * TwitterStatReporter is used to gather various statistics on tweets from a stream and create a report on them.
+ * This program makes use of the twitter4j library to create an authenticated twitter stream from which to gather
+ * tweets from. The program takes a users Access Token, Access Secret token, Consumer Key, and Consumer Secret token
+ * created on Twitters website and uses them to create an authenticated stream from which to sample from. Once the
+ * stream has been created it continues to gather from the stream for a predefined time and at predefined intervals
+ * set by the user. As the stream is being gathered a report is being created that will be show to the user after
+ * each interval has finished.
+ */
 public class Main {
 
+    /**
+     * Main starts by trying to log the config file and parse our the users credentials and parameters. It the
+     * validates that the values set by the user are valid otherwise it asks the user to enter them via the
+     * terminal. Once the users credentials have been accepted it starts by creating a gatheringThread to start
+     * gathering tweets and create reports.
+     * @param args -
+     * @throws IOException -
+     */
     public static void main(String[] args) throws IOException {
 
         // Load the config file

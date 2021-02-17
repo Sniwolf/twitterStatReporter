@@ -6,23 +6,35 @@ import twitter4j.TwitterStream;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * GatherRawSampleStream is used to gather tweets in their json form from a twitterStream object. It adds these
+ * raw tweets to a blocking queue that is passed to each intervalThread. Once the gathering stream thread is interrupted
+ * it closes and shuts down the stream, this occurs after totalRunTime.
+ */
 public class gatherRawSampleStream implements Runnable{
 
     // Blocking queue to hold the raw tweets.
     BlockingQueue<String> rawTweets;
 
     // Auth stream to gather a sample of tweets from.
-    TwitterStream authStream;
+    private final TwitterStream authStream;
 
     // Stream listener to listen to the sample stream.
-    RawStreamListener streamListener;
+    private final RawStreamListener streamListener;
 
+    /**
+     *
+     * @param authenticatedStream - TwitterStream object that has been created using the users credentials.
+     */
     public gatherRawSampleStream(TwitterStream authenticatedStream){
 
+        // Set the authStream
         this.authStream = authenticatedStream;
 
+        // Create the blocking queue for the raw tweets.
         this.rawTweets = new LinkedBlockingQueue<>();
 
+        // Create a stream listner and update the onMessage method to add the tweets to the rawTweets queue.
         this.streamListener = new RawStreamListener() {
             @Override
             public void onMessage(String rawJSON) {

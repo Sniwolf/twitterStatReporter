@@ -3,6 +3,12 @@ package com.twitterStatReporter;
 import java.util.Objects;
 import java.util.concurrent.*;
 
+/**
+ * An intervalThread object is used to consume tweets from the mainQueue and store them in its own intervalQueue that
+ * a reportGenerator will use to build a report from. An intervalThread will do this until it is interrupted by its
+ * corresponding intervalTerminator. The intervalThread will poll the mainQueue for up to intervalTime waiting for
+ * tweets to come in.
+ */
 public class IntervalThread implements Runnable{
 
     // The main blocking queue.
@@ -12,12 +18,14 @@ public class IntervalThread implements Runnable{
     BlockingQueue<String> intervalQueue;
 
     // Interval run time.
-    int intervalTime;
+    private final int intervalTime;
 
-    // Delay time till the interval needs to start.
-    int delayTime;
-
-    public IntervalThread(BlockingQueue<String> mainQueue, int intervalTime, int delayTime){
+    /**
+     *
+     * @param mainQueue - The main blocking queue created in a GatheringThread to hold tweets in their json format.
+     * @param intervalTime - The amount of time, in seconds, that an interval should run.
+     */
+    public IntervalThread(BlockingQueue<String> mainQueue, int intervalTime){
 
         // Set the main queue
         this.mainQueue = mainQueue;
@@ -27,9 +35,6 @@ public class IntervalThread implements Runnable{
 
         // Set the interval time.
         this.intervalTime = intervalTime;
-
-        // Set the delay time.
-        this.delayTime = delayTime;
     }
 
 
