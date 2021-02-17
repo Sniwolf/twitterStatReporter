@@ -3,7 +3,9 @@
 TwitterStatReport makes use of the twitter4j library to gather a sample of the stream and collect various statistcs about those tweets. It currently reports back the number tweets that were captured in a given time interval, the number of tweets that contained a url, the number of tweets that contained a photo, the top three hashtags that appeared  during the given interval, the top three most common language occurances, the top three most common domain occurrences, the top three user mention occurrences, and the percentage of tweets that were retweets during a given interval.
 
 Unfortunatly I was unable to grab aquire the timezone information from the tweets. The fields containing the UTC offset and timzone information has been either depreciated or nullified as explained in these links. It looks like this choice was done to meet GDPR standards.
+
 https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/user
+
 https://twittercommunity.com/t/utc-offset-and-time-zone-data-missing/106734
 
 ## Getting Started
