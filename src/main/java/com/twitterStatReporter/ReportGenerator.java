@@ -13,6 +13,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * ReportGenerator class is used to generate reports
+ */
 public class ReportGenerator implements Runnable{
 
     BlockingQueue<String> tweets;
