@@ -1,9 +1,12 @@
 package com.twitterStatReporter;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * UserInputAndValidation is used to validate the user input either from the config file or from that captured from the
+ * terminal.
+ */
 public class UserInputAndValidation {
 
     // A scanner to gather user input.
@@ -18,6 +21,7 @@ public class UserInputAndValidation {
     // Create a Hash Map to store the keys
     HashMap<String, String> authTokenMap;
 
+    // Flag used to indicate if the user would like their reports written to a file or to the terminal.
     int writeFlag;
 
     public UserInputAndValidation(){
@@ -25,6 +29,10 @@ public class UserInputAndValidation {
         this.authTokenMap = new HashMap<>();
     }
 
+    /**
+     * Used to gather the total run time the user would like for the program to run. If the user enters a value
+     * less than zero or one that is not a integer then it asks the user to enter a valid amount again.
+     */
     public void setTotalRunTime(){
 
         // Validate that a number was given.
@@ -52,6 +60,10 @@ public class UserInputAndValidation {
         }
     }
 
+    /**
+     * Used to set and check that the interval run time given is an integer and its value is not greater then the total
+     * runtime previously set.
+     */
     public void setIntervalRunTime(){
 
         // Validate that a number was given as input.
@@ -69,13 +81,19 @@ public class UserInputAndValidation {
         // Validate that the number given was less than the total run time.
         if(intervalRunTime > totalRunTime){
             do{
-                System.out.print("Please enter an interval time less than or equal to your current total run time: " + totalRunTime);
+                System.out.print("Please enter an interval time less than or equal to your current total run time: "
+                        + totalRunTime);
                 intervalRunTime = inputScanner.nextInt();
             }while(intervalRunTime > totalRunTime);
         }
 
     }
 
+    /**
+     * Used to check the intervalRunTime captured by the config file is not greater then the total run time and is
+     * greater then zero. If its not then call setIntervalRunTime to force the user to enter a valid value.
+     * @param intervalRunTime - time in seconds the user would like each interval to last.
+     */
     public void validateIntervalRunTime(int intervalRunTime){
         if(intervalRunTime > totalRunTime || intervalRunTime <= 0){
             setIntervalRunTime();
@@ -85,6 +103,9 @@ public class UserInputAndValidation {
         }
     }
 
+    /**
+     * SetAccessToken is used to check that an access token was given if not it asks the user to enter one.
+     */
     public void setAccessToken(){
 
         // String to hold the access token.
@@ -106,6 +127,9 @@ public class UserInputAndValidation {
 
     }
 
+    /**
+     * setAccessSecret checks to see if a Access Secret token was given, if not it asks the users to provide one.
+     */
     public void setAccessSecret(){
         // String to hold the access token.
         String accessSecret;
@@ -125,6 +149,9 @@ public class UserInputAndValidation {
         authTokenMap.put("AccessSecret", accessSecret);
     }
 
+    /**
+     * setConsumerKey checks if a Consumer key was given, if not it asks the user to provide one.
+     */
     public void setConsumerKey(){
         // String to hold the access token.
         String consumerKey;
@@ -144,6 +171,9 @@ public class UserInputAndValidation {
         authTokenMap.put("ConsumerKey", consumerKey);
     }
 
+    /**
+     * setConsumerSecret checks if a Consumer Secret token was given, if not it asks the user to provide one.
+     */
     public void setConsumerSecret(){
         // String to hold the access token.
         String consumerSecret;
@@ -163,11 +193,17 @@ public class UserInputAndValidation {
         authTokenMap.put("ConsumerSecret", consumerSecret);
     }
 
+    /**
+     * setWriteFlag asks the user to enter a value of either 1 or 2 to determine if the user would like to have their
+     * reports written to a file(2) or to the terminal (1). If the value is outside of this range then the program
+     * asks the user to enter a valid value.
+     */
     public void setWriteFlag(){
 
         // Validate that a number was given as input.
         do{
-            System.out.print("Please specify how you would like the reports delivered: 1 - On Terminal or 2 - Written to file ");
+            System.out.print("Please specify how you would like the reports delivered: 1 - On Terminal or 2 - " +
+                    "Written to file ");
             while(!inputScanner.hasNextInt()){
                 System.out.print("Please Enter a value of 1 - On terminal or 2 - written to file: ");
                 inputScanner.next();
@@ -186,6 +222,11 @@ public class UserInputAndValidation {
         }
     }
 
+    /**
+     * validateWriteFlag is used to check that the value given in the config file is valid, if not it
+     * calls setWriteFlag to force the user to enter a valid value.
+     * @param writeFlag - writeFlag value from the config file.
+     */
     public void validateWriteFlag(int writeFlag){
         if(writeFlag > 2 || writeFlag <= 0){
             setWriteFlag();
