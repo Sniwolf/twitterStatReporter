@@ -11,6 +11,8 @@
 .mtj.tmp/
 
 .idea
+target
+twitterStatReporter.iml
 
 # Package Files #
 *.jar

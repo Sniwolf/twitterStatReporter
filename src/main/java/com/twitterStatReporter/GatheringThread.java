@@ -3,7 +3,11 @@ package com.twitterStatReporter;
 import twitter4j.TwitterStream;
 
 import java.util.HashMap;
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * GatheringThread is used to create a thread that will gather tweets from the stream using TwitterStream.

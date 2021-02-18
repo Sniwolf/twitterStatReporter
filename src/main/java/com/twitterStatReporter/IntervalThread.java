@@ -1,7 +1,9 @@
 package com.twitterStatReporter;
 
 import java.util.Objects;
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * An intervalThread object is used to consume tweets from the mainQueue and store them in its own intervalQueue that
