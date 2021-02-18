@@ -202,10 +202,12 @@ public class UserInputAndValidation {
 
         // Validate that a number was given as input.
         do{
-            System.out.print("Please specify how you would like the reports delivered: 1 - On Terminal or 2 - " +
-                    "Written to file ");
+            System.out.print("Please specify how you would like the reports delivered\n");
+            System.out.println("1 - To have the report(s) print to the terminal.\n");
+            System.out.println("2 - To have the report(s) written to a file(s).\n");
             while(!inputScanner.hasNextInt()){
-                System.out.print("Please Enter a value of 1 - On terminal or 2 - written to file: ");
+                System.out.println("1 - To have the report(s) print to the terminal.\n");
+                System.out.println("2 - To have the report(s) written to a file(s).\n");
                 inputScanner.next();
             }
 
@@ -216,7 +218,9 @@ public class UserInputAndValidation {
         // Validate that the number given was less than the total run time.
         if(writeFlag > 2){
             do{
-                System.out.print("Please enter a value less than 2");
+                System.out.print("Please enter a value of: \n");
+                System.out.println("1 - To have the report(s) print to the terminal.\n");
+                System.out.println("2 - To have the report(s) written to a file(s).\n");
                 writeFlag = inputScanner.nextInt();
             }while(writeFlag > totalRunTime);
         }
