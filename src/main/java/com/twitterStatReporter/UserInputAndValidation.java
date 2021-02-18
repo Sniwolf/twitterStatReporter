@@ -215,7 +215,7 @@ public class UserInputAndValidation {
 
         }while (writeFlag <= 0);
 
-        // Validate that the number given was less than the total run time.
+        // Validate that the number given was less than the total run time
         if(writeFlag > 2){
             do{
                 System.out.print("Please enter a value of: \n");
